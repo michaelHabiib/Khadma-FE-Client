@@ -1,0 +1,14 @@
+.section-3 .w-3{
+    width: calc(100% / 3) !important;
+}
+@media (max-width:767px) {
+    .d-flex{
+        flex-direction: column;
+    }   
+    .d-flex .w-50{
+        width: 100% !important;
+    }
+    .d-flex .w-3{
+        width: 100% !important;
+    }
+}

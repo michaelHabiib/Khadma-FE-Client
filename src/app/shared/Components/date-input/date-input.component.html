@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline" class="d-block px-1 mt-1">
+  <mat-label>{{ Label  }}</mat-label>
+  <input
+    [disabled]="true"
+    matInput
+    [matDatepicker]="picker"
+    [formControl]="control"
+    [placeholder]="placeholder "
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">
+    <mat-error *ngIf="control.hasError('required')">
+      Please Select a Date
+    </mat-error>
+  </mat-error>
+</mat-form-field>

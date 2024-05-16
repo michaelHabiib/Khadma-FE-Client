@@ -1,0 +1,9 @@
+span.edit {
+    color: rgb(100, 100, 100);
+    cursor: pointer;
+  }
+  span.delete {
+    color: rgb(253, 67, 67);
+    cursor: pointer;
+  }
+  

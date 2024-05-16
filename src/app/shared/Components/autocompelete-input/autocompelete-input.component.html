@@ -1,0 +1,16 @@
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>Filter</mat-label>
+  <input
+    type="text"
+    [placeholder]="placeholder "
+    aria-label="Number"
+    matInput
+    [formControl]="control"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+    @for (option of filteredOptions | async; track option) {
+    <mat-option [value]="option.id">{{ option.accNo }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

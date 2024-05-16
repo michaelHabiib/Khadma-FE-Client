@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1">
+  <mat-label>{{ Label  }}</mat-label>
+  <textarea
+    matInput
+    [formControl]="control"
+    [placeholder]="placeholder "
+  ></textarea>
+</mat-form-field>
+<div *ngIf="control.invalid && (control.dirty || control.touched)">
+  <div *ngIf="control.hasError('required')">
+    Please Fill This Field 
+  </div>
+</div>

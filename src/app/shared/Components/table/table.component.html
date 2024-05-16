@@ -1,0 +1,95 @@
+<mat-form-field appearance="outline" class="w-100 my-2">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" #matSort>
+    @for (disCol of tableColumns; track $index) {
+    <ng-container matColumnDef="{{ disCol.columnDef }}">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [style.background-color]="headerBackgroundColor"
+        [style.color]="headerTextColor"
+        mat-sort-header
+      >
+        {{ disCol.header  }}
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <span
+          *ngIf="
+            disCol.cell && !disCol.isDate && !disCol.isNumber && !disCol.isRoute && !disCol.isDialog
+          "
+        >
+          {{ disCol.cell(element) }}
+        </span>
+        <span
+          *ngIf="disCol.isDate && disCol.cell && !disCol.isNumber"
+          class="d-block date"
+        >
+          {{ disCol.cell(element) | date }}
+        </span>
+        <span
+          *ngIf="
+            !disCol.isDate && disCol.cell && disCol.isNumber && !disCol.isRoute
+          "
+        >
+          {{ disCol.cell(element) | number }}
+        </span>
+        <span
+          *ngIf="
+            !disCol.isDate &&
+            disCol.cell &&
+            !disCol.isNumber &&
+            disCol.isRoute &&
+            disCol.isIcon &&
+            !disCol.isDialog
+          "
+          (click)="navigate(disCol, element)"
+          class="icon"
+        >
+          <mat-icon>{{ disCol.cell(element) }}</mat-icon>
+        </span>
+        <span
+          *ngIf="
+            !disCol.isDate &&
+            disCol.cell &&
+            !disCol.isNumber &&
+            !disCol.isRoute &&
+            disCol.isIcon &&
+            disCol.isDialog
+          "
+          (click)="openDialog(element)"
+          class="icon"
+        >
+          <mat-icon>{{ disCol.cell(element) }}</mat-icon>
+        </span>
+        <ng-container *ngIf="disCol.actionComponent">
+          <app-actions
+            *ngIf="isTableRowsEditable || isTableRowsDeletable"
+            [componentForm]="componentForm"
+            [row]="element"
+            [isTableRowsEditable]="isTableRowsEditable"
+            [isTableRowsDeletable]="isTableRowsDeletable"
+            (DeleteRow)="DeleteRowFromChild($event)"
+          ></app-actions>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    }
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    *ngIf="isTablePaginatable && totalLength"
+    [length]="totalLength"
+    [pageSize]="pageSize"
+    (page)="onRowClick($event)"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,4 @@
+<div class="d-flex justify-content-evenly" *ngIf="row">
+    <span *ngIf="isTableRowsEditable" class="edit material-icons" (click)="editrow(row)">edit</span>
+    <span *ngIf="isTableRowsDeletable"  class="delete material-icons" (click)="deleteRow(row)">delete</span>
+  </div>

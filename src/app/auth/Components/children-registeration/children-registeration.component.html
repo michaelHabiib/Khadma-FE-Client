@@ -1,0 +1,154 @@
+<app-header
+  backgroundColor="#7984c7"
+  textColor="#7984c7"
+  title="New User"
+></app-header>
+<div class="d-flex justify-content-center align-items-center">
+  <app-select-input
+    class="w-50"
+    [control]="registrationForm.controls['level']"
+    Label="Level"
+    Placeholder="Prim 1"
+    [validation]="{ required: true }"
+    [options]="levels"
+    nameProperty="name"
+  ></app-select-input>
+  <app-select-input
+    class="w-50"
+    [control]="registrationForm.controls['class']"
+    Label="Class"
+    Placeholder="Yellow Class"
+    [validation]="{ required: true }"
+    [options]="levels"
+    nameProperty="name"
+  ></app-select-input>
+</div>
+
+<app-text-input
+  [control]="registrationForm.controls['name']"
+  Label="Name"
+  Placeholder="Michael Ramzy Riad"
+  [validation]="{ required: true, maxLength: 55 }"
+></app-text-input>
+<div class="d-flex justify-content-center align-items-center">
+  <app-text-input
+    class="w-50"
+    [control]="registrationForm.controls['BuildingNumber']"
+    Label="Building Number"
+    Placeholder="22 A"
+    [validation]="{ required: true, maxLength: 20 }"
+  ></app-text-input>
+  <app-text-input
+    class="w-50"
+    [control]="registrationForm.controls['subStreet']"
+    Label="Sub Street"
+    Placeholder="Barkat"
+    [validation]="{ maxLength: 55 }"
+  ></app-text-input>
+</div>
+
+<div class="d-flex justify-content-center align-items-center">
+  <app-text-input
+    class="w-50"
+    [control]="registrationForm.controls['street']"
+    Label="Street"
+    Placeholder="Toman Bai"
+    [validation]="{ required: true, maxLength: 55 }"
+  ></app-text-input>
+  <app-text-input
+    class="w-50"
+    [control]="registrationForm.controls['area']"
+    Label="Area"
+    Placeholder="Hadyk ELzyton"
+    [validation]="{ required: true, maxLength: 55 }"
+  ></app-text-input>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+  <app-number-input
+    class="w-50"
+    [control]="registrationForm.controls['floor']"
+    Label="Floor"
+    Placeholder="2"
+    [validation]="{ required: true }"
+  ></app-number-input>
+  <app-number-input
+    class="w-50"
+    [control]="registrationForm.controls['flatNo']"
+    Label="Flat No"
+    Placeholder="2"
+    [validation]="{ required: true }"
+  ></app-number-input>
+</div>
+
+<app-descrption-input
+  [control]="registrationForm.controls['Descrption']"
+  Label="Descrption"
+  Placeholder="beside Adel Pharmcy"
+  [validation]="{}"
+></app-descrption-input>
+<div class="d-flex justify-content-center align-items-center section-3">
+  <app-text-input
+    class="w-3"
+    [control]="registrationForm.controls['whatsAppNo']"
+    Label="Whats app No"
+    Placeholder="01222353187"
+    [validation]="{ required: true }"
+  ></app-text-input>
+  <app-text-input
+    class="w-3"
+    [control]="registrationForm.controls['fatherPhone']"
+    Label="Father No"
+    Placeholder="01222353187"
+    [validation]="{ required: true }"
+  ></app-text-input>
+  <app-text-input
+    class="w-3"
+    [control]="registrationForm.controls['motherPhone']"
+    Label="Mother No"
+    Placeholder="01222353187"
+    [validation]="{ required: true }"
+  ></app-text-input>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+  <app-date-input
+    class="w-50"
+    [control]="registrationForm.controls['birthday']"
+    Label="Birthday"
+    Placeholder="30-12-1997"
+    [validation]="{ required: true }"
+  ></app-date-input>
+  <app-select-input
+    class="w-50"
+    [control]="registrationForm.controls['gender']"
+    Label="Gender"
+    Placeholder="Male"
+    [validation]="{ required: true }"
+    [options]="genders"
+    nameProperty="name"
+  ></app-select-input>
+</div>
+<div class="d-flex justify-content-center align-items-center section-3">
+  <app-text-input
+    class="w-3"
+    [control]="registrationForm.controls['NationalId']"
+    Label="National Id"
+    Placeholder="367721736216832"
+    [validation]="{ required: true, minLength: 16, maxLength: 16 }"
+  ></app-text-input>
+  <app-email-input
+    class="w-3"
+    [control]="registrationForm.controls['fatherMail']"
+    Label="Father Email"
+    Placeholder="father@email.com"
+    [validation]="{ email: true }"
+  ></app-email-input>
+  <app-email-input
+    class="w-3"
+    [control]="registrationForm.controls['motherMail']"
+    Label="Mother Email"
+    Placeholder="mother@email.com"
+    [validation]="{ email: true }"
+  ></app-email-input>
+</div>
+
+<app-submit-button (buttonClick)="submit()"> </app-submit-button>

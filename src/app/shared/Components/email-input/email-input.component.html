@@ -1,0 +1,39 @@
+<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1">
+  <mat-label>Enter Your Email</mat-label>
+  <input
+    matInput
+    [placeholder]="Placeholder"
+    [formControl]="control"
+    required
+  />
+  <mat-error
+    *ngIf="control.invalid && (control.dirty || control.touched)"
+    class=""
+  >
+    <mat-error
+      *ngIf="control.hasError('required')"
+      class=" d-flex justify-content-start align-items-center"
+    >
+    Please Fill This Field 
+    </mat-error>
+
+    <mat-error
+      *ngIf="control.hasError('minlength')"
+      class=" d-flex justify-contnet-start align-items-center"
+    >
+    this Field Have Min Number of Charcter
+  </mat-error>
+    <mat-error
+      *ngIf="control.hasError('maxlength')"
+      class=" d-flex justify-contnet-start align-items-center"
+    >
+    this Field Have Max Number of Charcter
+    </mat-error>
+    <mat-error
+      *ngIf="control.hasError('email')"
+      class=" d-flex justify-contnet-start align-items-center"
+    >
+    Please Enter a Vild EMail Format 
+    </mat-error>
+  </mat-error>
+</mat-form-field>

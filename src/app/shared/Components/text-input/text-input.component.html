@@ -1,0 +1,33 @@
+<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1">
+  <mat-label>{{ Label  }}</mat-label>
+
+  <input
+    matInput
+    [placeholder]="Placeholder "
+    [formControl]="control"
+  />
+  <mat-error
+    *ngIf="control.invalid && (control.dirty || control.touched)"
+    class="ms-1 fw-bold"
+  >
+    <mat-error
+      *ngIf="control.hasError('required')"
+      class="fw-bold d-flex justify-content-start align-items-center"
+    >
+    Please Fill This Field 
+    </mat-error>
+
+    <mat-error
+      *ngIf="control.hasError('minlength')"
+      class="fw-bold d-flex justify-contnet-start align-items-center"
+    >
+    this Field Have Min Number of Charcter
+    </mat-error>
+    <mat-error
+      *ngIf="control.hasError('maxlength')"
+      class="fw-bold d-flex justify-contnet-start align-items-center"
+    >
+    this Field Have Max Number of Charcter
+    </mat-error>
+  </mat-error>
+</mat-form-field>

@@ -1,0 +1,14 @@
+<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1">
+  <mat-label>{{ Label  }}</mat-label>
+  <input
+    matInput
+    [placeholder]="placeholder "
+    type="number"
+    [formControl]="control"
+  />
+  <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">
+    <mat-error *ngIf="control.hasError('required')">
+      Please Fill This Field 
+    </mat-error>
+  </mat-error>
+</mat-form-field>

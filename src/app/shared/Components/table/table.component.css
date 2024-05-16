@@ -1,0 +1,40 @@
+header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+.mat-elevation-z8 {
+  width: 100% !important;
+  overflow-x: scroll;
+  overflow-y: clip;
+}
+/* .tableHead {
+  background-color: #7984c7 !important;
+  color: white;
+} */
+::ng-deep .mat-sort-header-arrow {
+  color: white; /* Change this to your desired color */
+  opacity: 1;
+}
+.row-background-even {
+  background-color: #f0f0f0; /* Background color for even rows */
+}
+.row-background-odd {
+  background-color: #e0e0e0; /* Background color for odd rows */
+}
+span.material-icons {
+  cursor: pointer;
+}
+span.edit {
+  color: rgb(100, 100, 100);
+}
+span.delete {
+  color: rgb(253, 67, 67);
+}
+.date {
+  width: 100px;
+}
+.icon{
+  cursor: pointer;
+}
