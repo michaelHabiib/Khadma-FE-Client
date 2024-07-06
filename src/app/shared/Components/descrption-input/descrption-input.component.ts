@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { NoSpacesDirective } from '../../directives/limit-spaces.directive';
 
 @Component({
   selector: 'app-descrption-input',
@@ -12,25 +13,25 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     NgIf,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    NoSpacesDirective,
   ],
   templateUrl: './descrption-input.component.html',
-  styleUrl: './descrption-input.component.css'
+  styleUrl: './descrption-input.component.css',
 })
-export class DescrptionInputComponent implements OnChanges{
+export class DescrptionInputComponent implements OnChanges {
   @Input() control!: FormControl;
   @Input() Label: string = '';
   @Input() placeholder: string = '';
-  @Input() validation : any = {}
+  @Input() validation: any = {};
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes['validation']) {
       for (const key of Object.keys(this.validation)) {
         const value = this.validation[key];
         switch (key) {
           case 'required':
             if (value === true) {
-              this.control.addValidators([Validators.required,]);
+              this.control.addValidators([Validators.required]);
             }
             break;
           case 'minLength':

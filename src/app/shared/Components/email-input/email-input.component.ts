@@ -3,6 +3,8 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NoSpacesDirective } from '../../directives/limit-spaces.directive';
+import { OnlyEnglishLettersDirective } from '../../directives/only-english-letters.directive';
 @Component({
   selector: 'app-email-input',
   standalone: true,
@@ -12,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatInputModule,
     JsonPipe,
+    NoSpacesDirective,
+    OnlyEnglishLettersDirective,
   ],
   templateUrl: './email-input.component.html',
   styleUrl: './email-input.component.css',

@@ -1,10 +1,11 @@
-<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1">
-  <mat-label>Enter Your Email</mat-label>
+<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1" dir="rtl">
+  <mat-label>الايميل</mat-label>
   <input
     matInput
     [placeholder]="Placeholder"
     [formControl]="control"
-    required
+    appLimitSpaces
+    appOnlyEnglishLetters
   />
   <mat-error
     *ngIf="control.invalid && (control.dirty || control.touched)"
@@ -12,28 +13,28 @@
   >
     <mat-error
       *ngIf="control.hasError('required')"
-      class=" d-flex justify-content-start align-items-center"
+      class="d-flex justify-content-start align-items-center"
     >
-    Please Fill This Field 
+      يرجى ملء هذا الحقل
     </mat-error>
 
     <mat-error
       *ngIf="control.hasError('minlength')"
-      class=" d-flex justify-contnet-start align-items-center"
+      class="d-flex justify-contnet-start align-items-center"
     >
-    this Field Have Min Number of Charcter
-  </mat-error>
+      يجب أن يحتوي هذا الحقل على عدد أدنى من الأحرف
+    </mat-error>
     <mat-error
       *ngIf="control.hasError('maxlength')"
-      class=" d-flex justify-contnet-start align-items-center"
+      class="d-flex justify-contnet-start align-items-center ms-1 fw-bold"
     >
-    this Field Have Max Number of Charcter
+      يجب أن يحتوي هذا الحقل على عدد أقصى من الأحرف
     </mat-error>
     <mat-error
       *ngIf="control.hasError('email')"
-      class=" d-flex justify-contnet-start align-items-center"
+      class="d-flex justify-contnet-start align-items-center ms-1 fw-bold"
     >
-    Please Enter a Vild EMail Format 
+      يرجى إدخال بريد إلكتروني بصيغة صحيحة
     </mat-error>
   </mat-error>
 </mat-form-field>

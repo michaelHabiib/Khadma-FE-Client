@@ -1,17 +1,22 @@
-<mat-form-field appearance="outline" class="d-block px-1 mt-1">
-  <mat-label>{{ Label  }}</mat-label>
+<mat-form-field appearance="outline" class="d-block px-1 mt-1" dir="rtl">
+  <mat-label>{{ Label }}</mat-label>
   <input
-    [disabled]="true"
+    [readonly]="true"
     matInput
-    [matDatepicker]="picker"
+    [matDatepicker]="picker" 
     [formControl]="control"
-    [placeholder]="placeholder "
+    [placeholder]="placeholder"
+    [min]="minDate"
+    [max]="maxDate"
   />
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
   <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">
-    <mat-error *ngIf="control.hasError('required')">
-      Please Select a Date
-    </mat-error>
+    <mat-error
+      *ngIf="control.hasError('required')"
+      class="d-flex justify-contnet-start align-items-center ms-1 fw-bold"
+    >
+    يرجى تحديد تاريخ   
+   </mat-error>
   </mat-error>
 </mat-form-field>

@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -14,18 +14,20 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     NgIf,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
   ],
   templateUrl: './select-input.component.html',
-  styleUrl: './select-input.component.css'
+  styleUrl: './select-input.component.css',
 })
-export class SelectInputComponent implements OnChanges{
+export class SelectInputComponent implements OnChanges {
   @Input() control!: FormControl;
   @Input() Label: string = '';
   @Input() placeholder: string = '';
-  @Input() options !: any[]
-  @Input() nameProperty = ''
-  @Input() validation : any= {}
+  @Input() options!: any[];
+  @Input() nameProperty = '';
+  @Input() viewProperty = 'id';
+  @Input() validation: any = {};
+  @Input() isReadOnly: boolean = false;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['validation']) {
       // const validators: any[] = [];
@@ -44,5 +46,10 @@ export class SelectInputComponent implements OnChanges{
       }
     }
     this.control.updateValueAndValidity();
+    if (changes['isReadOnly']) {
+      if (this.isReadOnly) {
+        this.control.disable();
+      }
+    }
   }
 }

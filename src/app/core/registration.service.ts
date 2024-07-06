@@ -8,6 +8,17 @@ import { CodeValidation, RegistrationCode, level, registeration } from './interf
 export class RegistrationService {
 
   baseUrl = 'http/sada'
+  areaOptions :string[]= [
+    'حدائق الزيبتون',
+    'حلمية الزيتون',
+    'الزيتون الغربية',
+    'مصر الجديدة',
+  ]
+  streetOptions :string[] =[
+    'طومان باى',
+    'سليم الاول',
+    ' سنان'
+  ]
   constructor(private HttpClient: HttpClient) {  }
 
   sendCdoe(modal : RegistrationCode):Observable<CodeValidation>{

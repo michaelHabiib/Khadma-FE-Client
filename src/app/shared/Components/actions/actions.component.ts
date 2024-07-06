@@ -31,14 +31,12 @@ export class ActionsComponent implements OnChanges {
     }
   }
   editrow(data : any) {
-    console.log(data);
     this.dialog.open(this.componentForm, {
       data : data,
       panelClass: ['animate__animated', 'animate__flipInX'],
     });
   }
   deleteRow(row : any) {
-    console.log(row);
     this.DeleteRow.emit(row);
   }
 

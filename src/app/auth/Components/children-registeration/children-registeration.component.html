@@ -5,76 +5,93 @@
 ></app-header>
 <div class="d-flex justify-content-center align-items-center">
   <app-select-input
-    class="w-50"
+    class="w-100"
     [control]="registrationForm.controls['level']"
-    Label="Level"
-    Placeholder="Prim 1"
+    Label="المرحلة"
+    Placeholder="اولى ابتدائى"
     [validation]="{ required: true }"
+    [isReadOnly]='isReadOnly'
     [options]="levels"
     nameProperty="name"
   ></app-select-input>
-  <app-select-input
+  <!-- <app-select-input
     class="w-50"
     [control]="registrationForm.controls['class']"
-    Label="Class"
-    Placeholder="Yellow Class"
+    Label="الفصل"
+    Placeholder="الفصل الاصفر"
     [validation]="{ required: true }"
+    [isReadOnly]='isReadOnly'
     [options]="levels"
     nameProperty="name"
-  ></app-select-input>
+  ></app-select-input> -->
 </div>
 
 <app-text-input
   [control]="registrationForm.controls['name']"
-  Label="Name"
-  Placeholder="Michael Ramzy Riad"
+  Label="الاسم رباعي"
+  Placeholder="مايكل رمزي رياض"
   [validation]="{ required: true, maxLength: 55 }"
+  [isFullname]=true
 ></app-text-input>
 <div class="d-flex justify-content-center align-items-center">
   <app-text-input
     class="w-50"
     [control]="registrationForm.controls['BuildingNumber']"
-    Label="Building Number"
-    Placeholder="22 A"
+    Label="رقم العمارة"
+    Placeholder="22 أ"
     [validation]="{ required: true, maxLength: 20 }"
+    [isitArabicInputOnly]=false
   ></app-text-input>
   <app-text-input
     class="w-50"
     [control]="registrationForm.controls['subStreet']"
-    Label="Sub Street"
-    Placeholder="Barkat"
+    Label="الشارع الفرعي"
+    Placeholder="بركات"
     [validation]="{ maxLength: 55 }"
   ></app-text-input>
 </div>
 
 <div class="d-flex justify-content-center align-items-center">
-  <app-text-input
+  <app-select-input
+  *ngIf="isAreaHadykElzyton"
     class="w-50"
     [control]="registrationForm.controls['street']"
-    Label="Street"
-    Placeholder="Toman Bai"
+    Label="الشارع الرئيسى"
+    Placeholder="طومان باي"
+    [options]="streetOptions"
+    viewProperty="name"
+    nameProperty="name"
+    [validation]="{ required: true, maxLength: 55 }"
+  ></app-select-input>
+  <app-text-input
+  *ngIf="!isAreaHadykElzyton"
+    class="w-50"
+    [control]="registrationForm.controls['street']"
+    Label="الشارع الرئيسى"
+    Placeholder="طومان باي"
     [validation]="{ required: true, maxLength: 55 }"
   ></app-text-input>
-  <app-text-input
+  <app-select-input
     class="w-50"
     [control]="registrationForm.controls['area']"
-    Label="Area"
-    Placeholder="Hadyk ELzyton"
-    [validation]="{ required: true, maxLength: 55 }"
-  ></app-text-input>
+    Label="المنطقة"
+    Placeholder="حدائق الزيتون"
+    [options]="areaOptions"
+    [validation]="{ required: true }"
+  ></app-select-input>
 </div>
 <div class="d-flex justify-content-center align-items-center">
   <app-number-input
     class="w-50"
     [control]="registrationForm.controls['floor']"
-    Label="Floor"
+    Label="الدور"
     Placeholder="2"
     [validation]="{ required: true }"
   ></app-number-input>
   <app-number-input
     class="w-50"
     [control]="registrationForm.controls['flatNo']"
-    Label="Flat No"
+    Label="رقم الشقة"
     Placeholder="2"
     [validation]="{ required: true }"
   ></app-number-input>
@@ -82,45 +99,47 @@
 
 <app-descrption-input
   [control]="registrationForm.controls['Descrption']"
-  Label="Descrption"
+  Label="الوصف"
   Placeholder="beside Adel Pharmcy"
   [validation]="{}"
 ></app-descrption-input>
 <div class="d-flex justify-content-center align-items-center section-3">
-  <app-text-input
+  <app-number-input
     class="w-3"
     [control]="registrationForm.controls['whatsAppNo']"
-    Label="Whats app No"
+    Label="رقم الواتس اب"
     Placeholder="01222353187"
-    [validation]="{ required: true }"
-  ></app-text-input>
-  <app-text-input
+    [validation]="{ required: true, pattern : true}"
+  ></app-number-input>
+  <app-number-input
     class="w-3"
     [control]="registrationForm.controls['fatherPhone']"
-    Label="Father No"
+    Label="رقم الاب"
     Placeholder="01222353187"
-    [validation]="{ required: true }"
-  ></app-text-input>
-  <app-text-input
+    [validation]="{ required: true,pattern : true }"
+  ></app-number-input>
+  <app-number-input
     class="w-3"
     [control]="registrationForm.controls['motherPhone']"
-    Label="Mother No"
+    Label="رقم الام"
     Placeholder="01222353187"
-    [validation]="{ required: true }"
-  ></app-text-input>
+    [validation]="{ required: true, pattern : true }"
+  ></app-number-input>
 </div>
 <div class="d-flex justify-content-center align-items-center">
   <app-date-input
     class="w-50"
     [control]="registrationForm.controls['birthday']"
-    Label="Birthday"
+    Label="تاربخ الميلاد"
     Placeholder="30-12-1997"
     [validation]="{ required: true }"
+    [minDate]="minDate"
+    [maxDate]="maxDate"
   ></app-date-input>
   <app-select-input
     class="w-50"
     [control]="registrationForm.controls['gender']"
-    Label="Gender"
+    Label="الجنس"
     Placeholder="Male"
     [validation]="{ required: true }"
     [options]="genders"
@@ -131,21 +150,21 @@
   <app-text-input
     class="w-3"
     [control]="registrationForm.controls['NationalId']"
-    Label="National Id"
+    Label="رقم شهادة الميلاد"
     Placeholder="367721736216832"
     [validation]="{ required: true, minLength: 16, maxLength: 16 }"
   ></app-text-input>
   <app-email-input
     class="w-3"
     [control]="registrationForm.controls['fatherMail']"
-    Label="Father Email"
+    Label="ايميل الاب"
     Placeholder="father@email.com"
     [validation]="{ email: true }"
   ></app-email-input>
   <app-email-input
     class="w-3"
     [control]="registrationForm.controls['motherMail']"
-    Label="Mother Email"
+    Label="ايميل الام"
     Placeholder="mother@email.com"
     [validation]="{ email: true }"
   ></app-email-input>

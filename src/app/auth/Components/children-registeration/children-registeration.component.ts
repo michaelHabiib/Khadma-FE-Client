@@ -15,7 +15,7 @@ export class ChildrenRegisterationComponent implements OnInit {
   registrationForm = new FormGroup({
     code: new FormControl('', Validators.required),
     level: new FormControl('', Validators.required),
-    class: new FormControl('', Validators.required),
+    // class: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     BuildingNumber: new FormControl('', Validators.required),
     subStreet: new FormControl(''),
@@ -44,11 +44,17 @@ export class ChildrenRegisterationComponent implements OnInit {
     { id: 'prim1', name: 'Prim 1' },
   ];
   genders : {id : string, name : string}[]= [
-    { id: 'male', name: 'Male' },
-    { id: 'female', name: 'Female' },
+    { id: 'male', name: 'ذكر' },
+    { id: 'female', name: 'أنثي' },
 
   ]
   classes : any []= []
+  isReadOnly : boolean = true
+  minDate!: Date;
+  maxDate!: Date;
+  areaOptions: string[] = []
+  streetOptions: string[] = []
+  isAreaHadykElzyton : boolean = false
   constructor(
     private dialog: MatDialog,
     private RegistrationService: RegistrationService,
@@ -57,26 +63,40 @@ export class ChildrenRegisterationComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.areaOptions = this.RegistrationService.areaOptions
+    this.streetOptions = this.RegistrationService.streetOptions
+
     this.openCOdeInputDialog();
-    this.registrationForm.get('level')?.valueChanges.subscribe((value) => {
-      this.getAllClasses(value!);
+    this.registrationForm.get('area')?.valueChanges.subscribe((value) => {
+        if (value === 'حدائق الزيبتون'){
+          this.isAreaHadykElzyton = true
+        }
     });
+        // Calculate the min and max dates
+        const currentDate = new Date();
+        this.minDate = new Date();
+        this.minDate.setFullYear(currentDate.getFullYear() - 8); // 8 years ago
+    
+        this.maxDate = new Date();
+        this.maxDate.setFullYear(currentDate.getFullYear() - 2);
+        this.maxDate.setMonth(currentDate.getMonth() - 11); // 2 years and 11 months ago
   }
   openCOdeInputDialog() {
     this.dialog.open(CodeInputComponent, {
-      disableClose: true, // Prevents closing the dialog by clicking outside or pressing escape key
+      // disableClose: true,
+       // Prevents closing the dialog by clicking outside or pressing escape key
     });
   }
-  getAllClasses(level: string) {
-    this.RegistrationService.getClassesByLevel(level).subscribe({
-      next: (res) => {
-        this.classes = res;
-      },
-      error: (err) => {
-        this.NotifictionService.openSnackBar('Failed to Get Data')
-      },
-    });
-  }
+  // getAllClasses(level: string) {
+  //   this.RegistrationService.getClassesByLevel(level).subscribe({
+  //     next: (res) => {
+  //       this.classes = res;
+  //     },
+  //     error: (err) => {
+  //       this.NotifictionService.openSnackBar('Failed to Get Data')
+  //     },
+  //   });
+  // }
   submit(){
     const modal =  this.registrationForm.value
     this.RegistrationService.studentRegister(modal).subscribe({

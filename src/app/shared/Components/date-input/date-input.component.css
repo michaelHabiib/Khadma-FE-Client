@@ -4,6 +4,7 @@ mat-error {
   align-items: start;
   color: rgb(252, 95, 95);
 }
+
 mat-form-field {
   width: 100% !important;
 }

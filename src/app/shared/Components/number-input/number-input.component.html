@@ -1,14 +1,18 @@
-<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1">
-  <mat-label>{{ Label  }}</mat-label>
+<mat-form-field appearance="outline" class="d-block w-100 px-1 mt-1" dir="rtl">
+  <mat-label>{{ Label }}</mat-label>
   <input
     matInput
-    [placeholder]="placeholder "
+    [placeholder]="placeholder"
     type="number"
     [formControl]="control"
+    appLimitSpaces
   />
   <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">
-    <mat-error *ngIf="control.hasError('required')">
-      Please Fill This Field 
+    <mat-error *ngIf="control.hasError('required')" class="ms-1 fw-bold">
+      يرجى ملء هذا الحقل
+    </mat-error>
+    <mat-error *ngIf="control.hasError('pattern')" class="ms-1 fw-bold">
+      يجب أن يكون الرقم مكون من 11 رقمًا بالضبط
     </mat-error>
   </mat-error>
 </mat-form-field>

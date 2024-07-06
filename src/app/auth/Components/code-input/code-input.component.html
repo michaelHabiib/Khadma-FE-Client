@@ -1,8 +1,8 @@
 <div class="pt-2" >
   <app-text-input
     [control]="codeForm.controls['code']"
-    Label="code"
-    Placeholder="RF$#12"
+    Label="كود التسجيل"
+    Placeholder="KSRW%25"
     [validation]="{ required: true, minLength: 6, maxLength: 6 }"
   ></app-text-input>
   <app-submit-button (buttonClick)="submit()"> </app-submit-button>

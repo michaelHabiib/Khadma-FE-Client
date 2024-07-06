@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -16,18 +16,19 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgIf,
     ReactiveFormsModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   templateUrl: './date-input.component.html',
-  styleUrl: './date-input.component.css'
+  styleUrl: './date-input.component.css',
 })
-export class DateInputComponent implements OnChanges{
+export class DateInputComponent implements OnChanges {
   @Input() control!: FormControl;
   @Input() Label: string = '';
   @Input() placeholder: string = '';
-  @Input() validation : any = {}
+  @Input() validation: any = {};
+  @Input() minDate?: Date;
+  @Input() maxDate?: Date;
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes['validation']) {
       for (const key of Object.keys(this.validation)) {
         const value = this.validation[key];
@@ -54,5 +55,4 @@ export class DateInputComponent implements OnChanges{
     }
     this.control.updateValueAndValidity();
   }
-
 }

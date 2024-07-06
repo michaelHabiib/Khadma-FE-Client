@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { Observable, startWith, map } from 'rxjs';
+import { NoSpacesDirective } from '../../directives/limit-spaces.directive';
 
 @Component({
   selector: 'app-autocompelete-input',
@@ -15,6 +16,7 @@ import { Observable, startWith, map } from 'rxjs';
     MatInputModule,
     ReactiveFormsModule,
     AsyncPipe,
+    NoSpacesDirective
   ],
   templateUrl: './autocompelete-input.component.html',
   styleUrl: './autocompelete-input.component.css',
@@ -29,7 +31,6 @@ export class AutocompeleteInputComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['options'] || changes['filterProperties']) {
       this.options = changes['options'].currentValue;
-      console.log(this.options);
       this.filteredOptions = this.control.valueChanges.pipe(
         startWith(''),
         map((value) => this._filter(value || ''))
